@@ -1,4 +1,4 @@
-import Navbar from "@/shared/NavBar";
+import Navbar from "@/shared/Nabar";
 import {
   AvatarChatGPT,
   AvatarUser,

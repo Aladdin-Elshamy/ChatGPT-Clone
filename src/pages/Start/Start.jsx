@@ -1,4 +1,4 @@
-import Navbar from "@/shared/NavBar";
+import Navbar from "@/shared/Navbar";
 import { Flash, Light, Limitation, Refresh } from "@/utils/icons.util";
 import Input from "@/shared/Input";
 import Aside from "@/shared/Aside";
