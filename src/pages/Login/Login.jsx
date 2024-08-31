@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { GPTLogo, Google, Microsoft } from "../../utils/icons.util";
+import { GPTLogo, Google, Microsoft } from "@/utils/icons.util";
 
 export const Login = () => {
   return (

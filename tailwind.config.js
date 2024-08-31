@@ -3,6 +3,16 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1rem",
+          sm: "2rem",
+          lg: "4rem",
+          xl: "5rem",
+          "2xl": "6rem",
+        }
+      },
       fontFamily: {
         inter: ["Inter"],
       },
@@ -10,6 +20,8 @@ export default {
         primary: "#0FA47F",
         secondary: "#5536DA",
         background: "#343541",
+        sideBg: "#202123",
+        bright: "#444654"
       },
     },
   },
