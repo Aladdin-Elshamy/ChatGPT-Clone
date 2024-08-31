@@ -12,7 +12,7 @@ export function Start() {
       <div className="w-full relative min-h-[90vh] lg:min-h-[100vh] lg:w-4/5">
         <div className="container lg:px-5 mt-36 pb-60">
           <h1 className="text-4xl text-center font-medium">ChatGPT</h1>
-          <div className="mt-16 pt-1 grid gap-2 grid-cols-1 md:gap-8 lg:gap-4 md:grid-cols-2 lg:grid-cols-3 w-fit mx-auto">
+          <div className="mt-16 pt-1 grid gap-12 grid-cols-1 md:gap-8 lg:gap-4 md:grid-cols-2 lg:grid-cols-3 w-fit mx-auto">
             <div className="mx-auto w-fit">
               <div className="text-center">
                 <Light classes="w-6 h-6 mx-auto" />
