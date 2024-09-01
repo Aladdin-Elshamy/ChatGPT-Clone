@@ -5,5 +5,7 @@
 @tailwind utilities;
 
 body {
-  @apply font-inter font-normal bg-background;
+  background-color: #343541;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
 }
