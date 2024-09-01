@@ -7,17 +7,24 @@ import {
   Light,
   Logout,
 } from "@/utils/icons.util";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="lg:hidden bg-background dark:border-gray-500 border-b sticky top-0 z-50">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <button
-          data-collapse-toggle="navbar-hamburger"
+          onClick={toggleMenu}
           type="button"
           className="inline-flex items-center justify-center w-fit text-sm text-white rounded-lg focus:outline-none"
           aria-controls="navbar-hamburger"
-          aria-expanded="false"
+          aria-expanded={isMenuOpen}
         >
           <span className="sr-only">Open main menu</span>
           <svg
@@ -40,7 +47,10 @@ export default function Navbar() {
         <button>
           <Add />
         </button>
-        <div className="hidden w-full" id="navbar-hamburger">
+        <div
+          className={`${isMenuOpen ? "block" : "hidden"} w-full`}
+          id="navbar-hamburger"
+        >
           <ul className="flex flex-col font-normal p-2 mt-4 rounded-md bg-sideBg dark:border-gray-700">
             <li>
               <button className="block py-2 px-3 focus:bg-gray-700 w-full">
