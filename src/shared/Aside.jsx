@@ -20,7 +20,7 @@ export default function Aside() {
           <Add classes="w-2 h-2" />
           <p>New chat</p>
         </button>
-        <button
+        <div
           className={`${
             window.location.pathname === "/start" ? "hidden" : ""
           } bg-[#343540] border border-bright flex gap-[15px] p-4 rounded-md items-center w-full mt-3`}
@@ -31,6 +31,7 @@ export default function Aside() {
             viewBox="0 0 14 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className="cursor-pointer"
           >
             <path
               d="M13 9C13 9.35362 12.8595 9.69276 12.6095 9.94281C12.3594 10.1929 12.0203 10.3333 11.6667 10.3333H3.66667L1 13V2.33333C1 1.97971 1.14048 1.64057 1.39052 1.39052C1.64057 1.14048 1.97971 1 2.33333 1H11.6667C12.0203 1 12.3594 1.14048 12.6095 1.39052C12.8595 1.64057 13 1.97971 13 2.33333V9Z"
@@ -48,6 +49,7 @@ export default function Aside() {
             viewBox="0 0 14 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className="cursor-pointer"
           >
             <path
               d="M7 12.4142H13"
@@ -70,6 +72,7 @@ export default function Aside() {
             viewBox="0 0 13 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className="cursor-pointer"
           >
             <path
               d="M1 3.40002H2.2H11.8"
@@ -100,7 +103,7 @@ export default function Aside() {
               strokeLinejoin="round"
             />
           </svg>
-        </button>
+        </div>
       </div>
       <div>
         <ul className="flex flex-col font-normal gap-2 mt-2 mb-4 rounded-md bg-sideBg dark:border-gray-700">
