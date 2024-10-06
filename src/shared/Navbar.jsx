@@ -8,13 +8,18 @@ import {
   Logout,
 } from "@/utils/icons.util";
 import { useState } from "react";
-
-export default function Navbar() {
+import Cookies from "js-cookie";
+export default function Navbar({ setChat }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  function handleLogout() {
+    Cookies.remove("token");
+    Cookies.remove("email");
+    window.location.replace("/login");
+  }
 
   return (
     <nav className="lg:hidden bg-background dark:border-gray-500 border-b sticky top-0 z-50">
@@ -145,7 +150,10 @@ export default function Navbar() {
               </button>
             </li>
             <li>
-              <button className="block py-2 px-3 focus:bg-gray-700 w-full">
+              <button
+                className="block py-2 px-3 focus:bg-gray-700 w-full"
+                onClick={() => setChat([])}
+              >
                 <Feature>
                   <Delete />
                   <p className="text-white">Clear conversations</p>
@@ -177,7 +185,10 @@ export default function Navbar() {
               </button>
             </li>
             <li>
-              <button className="block py-2 px-3 focus:bg-gray-700 w-full">
+              <button
+                className="block py-2 px-3 focus:bg-gray-700 w-full"
+                onClick={handleLogout}
+              >
                 <Feature>
                   <Logout />
                   <p className="text-white">Log out</p>

@@ -7,13 +7,19 @@ import {
   Light,
   Logout,
 } from "@/utils/icons.util";
+import Cookies from "js-cookie";
 
-export default function Aside() {
+export default function Aside({ setChat }) {
+  function handleLogout() {
+    Cookies.remove("token");
+    Cookies.remove("email");
+    window.location.replace("/login");
+  }
   return (
-    <aside className="hidden lg:block bg-sideBg w-1/5 text-sm">
+    <aside className="hidden fixed left-0 h-screen z-50 lg:block bg-sideBg w-1/5 text-sm">
       <div
         className={`${
-          window.location.pathname === "/start" ? "h-[76%]" : "h-4/6"
+          window.location.pathname === "/start" ? "h-[70%]" : "h-4/6"
         } w-[95%] mx-auto mt-2 border-b border-bright`}
       >
         <button className="border border-bright flex gap-4 p-4 rounded-md items-center w-full">
@@ -110,7 +116,10 @@ export default function Aside() {
           <li
             className={`${window.location.pathname === "/start" && "hidden"}`}
           >
-            <button className="block py-2 px-3 hover:bg-gray-700 w-full">
+            <button
+              className="block py-2 px-3 hover:bg-gray-700 w-full"
+              onClick={() => setChat([])}
+            >
               <Feature>
                 <Delete />
                 <p className="text-white">Clear conversations</p>
@@ -142,7 +151,10 @@ export default function Aside() {
             </button>
           </li>
           <li>
-            <button className="block py-2 px-3 hover:bg-gray-700 w-full">
+            <button
+              onClick={handleLogout}
+              className="block py-2 px-3 hover:bg-gray-700 w-full"
+            >
               <Feature>
                 <Logout />
                 <p className="text-white">Log out</p>

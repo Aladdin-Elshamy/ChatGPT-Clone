@@ -355,13 +355,14 @@ export const Dislike = () => (
   </svg>
 );
 
-export const Refresh = () => (
+export const Refresh = ({ className }) => (
   <svg
     width="13"
     height="11"
     viewBox="0 0 13 11"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className={`${className}`}
   >
     <path
       d="M1 1.4989V4.49969H4.00079"

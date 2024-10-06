@@ -1,14 +1,89 @@
-export default function Input() {
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { Refresh } from "@/utils/icons.util";
+import { useState } from "react";
+
+export default function Input({ chat, setChat }) {
+  const [search, setSearch] = useState("");
+  const [currentChat, setCurrentChat] = useState({ prompt: "" });
+  const [loading, setLoading] = useState(false);
+  const genAI = new GoogleGenerativeAI(
+    "AIzaSyAuPdoZHMUieDFn04qafijPhlPdeH5QtYI"
+  );
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!search) return;
+    try {
+      const searchValue = search;
+      setSearch("");
+      setLoading(true);
+      setCurrentChat({ prompt: searchValue });
+      setChat([...chat, { prompt: searchValue, response: "" }]);
+      const result = await model.generateContent(searchValue);
+      if (result && result.response && result.response.text) {
+        setChat([
+          ...chat,
+          { prompt: searchValue, response: result.response.text() },
+        ]);
+      } else {
+        console.error("Invalid response from model.generateContent");
+      }
+    } catch (error) {
+      console.error("Error in handleSubmit:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+  async function handleRegenerate() {
+    if (!currentChat.prompt) return;
+    try {
+      setLoading(true);
+      const result = await model.generateContent(currentChat.prompt);
+      if (result && result.response && result.response.text) {
+        setChat([
+          ...chat,
+          { prompt: currentChat.prompt, response: result.response.text() },
+        ]);
+      } else {
+        console.error("Invalid response from model.generateContent");
+      }
+    } catch (error) {
+      console.error("Error in handleRegenerate:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+  function handleChange(e) {
+    setSearch(e.target.value);
+  }
   return (
-    <form className="mt-[0.6rem] mb-2 mx-auto">
+    <form className="mb-2 mx-auto" onSubmit={handleSubmit}>
+      <button
+        type="button"
+        className={`${
+          (loading && "cursor-not-allowed") ||
+          (!currentChat.prompt && "cursor-not-allowed")
+        } text-[#C5C5D1] flex mx-auto items-center gap-2 py-2 px-4 border border-bright rounded`}
+        onClick={handleRegenerate}
+        disabled={loading || !currentChat.prompt}
+      >
+        <Refresh className={loading ? "animate-spin-reverse" : ""} />
+        Regenerate response
+      </button>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
       >
         Search
       </label>
-      <div className="relative">
-        <button className="absolute z-10 inset-y-0 end-3 flex items-center ps-3">
+      <div className="relative mt-[0.6rem]">
+        <button
+          className={`${
+            (loading && "cursor-not-allowed") ||
+            (search.length === 0 && "cursor-not-allowed")
+          } absolute z-10 inset-y-0 end-3 flex items-center ps-3`}
+          disabled={loading || search.length === 0}
+        >
           <svg
             width="14"
             height="14"
@@ -23,9 +98,11 @@ export default function Input() {
           </svg>
         </button>
         <input
+          onChange={handleChange}
+          value={search}
           type="text"
           id="default-search"
-          className="text-white shadow-[0px_0px_6px_0px_#0000001A] block w-full rounded border-[#303139] bg-[#40414E] py-3 px-4 placeholder-gray-500 focus:ring-0 focus:border-[#303139] sm:text-sm"
+          className="text-white shadow-[0px_0px_6px_0px_#0000001A] block w-full rounded border-[#303139] bg-[#40414E] py-3 px-4 placeholder-gray-500 focus:ring-0 focus:border-[#303139] sm:text-sm focus:outline-none"
         />
       </div>
     </form>
