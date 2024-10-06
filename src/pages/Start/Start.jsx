@@ -100,7 +100,11 @@ export function Start() {
                           <div className="min-w-xs">
                             <AvatarChatGPT />
                           </div>
-                          <p>{conversation.response || "loading"}</p>
+                          <p>
+                            {conversation.response || (
+                              <span className="block w-3 animate-bounce h-3 bg-white rounded-full"></span>
+                            )}
+                          </p>
                         </div>
                         <div className="flex gap-4 mt-9 lg:mt-0 ml-12">
                           <Like />

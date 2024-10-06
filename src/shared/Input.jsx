@@ -6,6 +6,7 @@ export default function Input({ chat, setChat }) {
   const [search, setSearch] = useState("");
   const [currentChat, setCurrentChat] = useState({ prompt: "" });
   const [loading, setLoading] = useState(false);
+  const [rotate, setRotate] = useState(false);
   const genAI = new GoogleGenerativeAI(
     "AIzaSyAuPdoZHMUieDFn04qafijPhlPdeH5QtYI"
   );
@@ -38,6 +39,7 @@ export default function Input({ chat, setChat }) {
     if (!currentChat.prompt) return;
     try {
       setLoading(true);
+      setRotate(true);
       const result = await model.generateContent(currentChat.prompt);
       if (result && result.response && result.response.text) {
         setChat([
@@ -51,6 +53,7 @@ export default function Input({ chat, setChat }) {
       console.error("Error in handleRegenerate:", error);
     } finally {
       setLoading(false);
+      setRotate(false);
     }
   }
   function handleChange(e) {
@@ -67,7 +70,7 @@ export default function Input({ chat, setChat }) {
         onClick={handleRegenerate}
         disabled={loading || !currentChat.prompt}
       >
-        <Refresh className={loading ? "animate-spin-reverse" : ""} />
+        <Refresh className={rotate ? "animate-spin-reverse" : ""} />
         Regenerate response
       </button>
       <label
