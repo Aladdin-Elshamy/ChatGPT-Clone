@@ -3,10 +3,18 @@ import { Flash, Light, Limitation } from "@/utils/icons.util";
 import Input from "@/shared/Input";
 import Aside from "@/shared/Aside";
 import InfoProvider from "@/components/InfoProvider";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { AvatarChatGPT, AvatarUser, Dislike, Like } from "@/utils/icons.util";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 export function Start() {
   const [chat, setChat] = useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!Cookies.get("email") && !Cookies.get("token")) {
+      navigate("/login");
+    }
+  }, [navigate]);
   return (
     <main className="text-white lg:flex justify-center lg:pl-[20%]">
       <Navbar setChat={setChat} />

@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export default function Input({ chat, setChat }) {
   const [search, setSearch] = useState("");
-  const [currentChat, setCurrentChat] = useState({ prompt: "" });
   const [loading, setLoading] = useState(false);
   const [rotate, setRotate] = useState(false);
   const genAI = new GoogleGenerativeAI(
@@ -18,7 +17,6 @@ export default function Input({ chat, setChat }) {
       const searchValue = search;
       setSearch("");
       setLoading(true);
-      setCurrentChat({ prompt: searchValue });
       setChat([...chat, { prompt: searchValue, response: "" }]);
       const result = await model.generateContent(searchValue);
       if (result && result.response && result.response.text) {
@@ -36,15 +34,18 @@ export default function Input({ chat, setChat }) {
     }
   }
   async function handleRegenerate() {
-    if (!currentChat.prompt) return;
+    if (!chat) return;
     try {
       setLoading(true);
       setRotate(true);
-      const result = await model.generateContent(currentChat.prompt);
+      const result = await model.generateContent(chat[chat.length - 1].prompt);
       if (result && result.response && result.response.text) {
         setChat([
           ...chat,
-          { prompt: currentChat.prompt, response: result.response.text() },
+          {
+            prompt: chat[chat.length - 1].prompt,
+            response: result.response.text(),
+          },
         ]);
       } else {
         console.error("Invalid response from model.generateContent");
@@ -65,10 +66,10 @@ export default function Input({ chat, setChat }) {
         type="button"
         className={`${
           (loading && "cursor-not-allowed") ||
-          (!currentChat.prompt && "cursor-not-allowed")
+          (!chat.length && "cursor-not-allowed opacity-70 md:opacity-100")
         } text-[#C5C5D1] flex mx-auto items-center gap-2 py-2 px-4 border border-bright rounded`}
         onClick={handleRegenerate}
-        disabled={loading || !currentChat.prompt}
+        disabled={loading || chat.length === 0}
       >
         <Refresh className={rotate ? "animate-spin-reverse" : ""} />
         Regenerate response

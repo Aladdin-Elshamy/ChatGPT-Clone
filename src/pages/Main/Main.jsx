@@ -2,44 +2,28 @@ import Navbar from "@/shared/Navbar";
 import { AvatarChatGPT, AvatarUser, Dislike, Like } from "@/utils/icons.util";
 import Input from "@/shared/Input";
 import Aside from "@/shared/Aside";
-import { Fragment, useState } from "react";
-
+import { Fragment, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 export function Main() {
-  const [chat, setChat] = useState([]);
+  const [chat, setChat] = useState([
+    {
+      prompt: "What is a Chatbot?",
+      response:
+        "A chatbot is a computer program that simulates human conversation through voice commands or text chats or both. Itcan be integrated with various messaging platforms like Facebook Messenger, WhatsApp, WeChat, etc. and can be used for a variety of purposes, such as customer service, entertainment, and e-commerce.",
+    },
+  ]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!Cookies.get("email") && !Cookies.get("token")) {
+      navigate("/login");
+    }
+  }, [navigate]);
   return (
     <main className="text-white lg:flex lg:pl-[20%]">
       <Navbar setChat={setChat} />
       <Aside setChat={setChat} />
       <div className="w-full relative min-h-[90vh] lg:min-h-[100vh]">
-        <div className="container lg:px-48 mt-6">
-          <div className="flex gap-4">
-            <AvatarUser />
-            <p>What is a Chatbot?</p>
-          </div>
-        </div>
-        <div className={`${chat.length > 0 ? "" : "pb-60"}`}>
-          <div className="bg-bright pt-7 pb-6 mt-5">
-            <div className="container lg:px-48 lg:flex gap-4 items-start">
-              <div className="flex gap-4 max-w-3xl">
-                <div className="min-w-xs">
-                  <AvatarChatGPT />
-                </div>
-                <p>
-                  A chatbot is a computer program that simulates human
-                  conversation through voice commands or text chats or both. It
-                  can be integrated with various messaging platforms like
-                  Facebook Messenger, WhatsApp, WeChat, etc. and can be used for
-                  a variety of purposes, such as customer service,
-                  entertainment, and e-commerce.
-                </p>
-              </div>
-              <div className="flex gap-4 mt-9 lg:mt-0 ml-12">
-                <Like />
-                <Dislike />
-              </div>
-            </div>
-          </div>
-        </div>
         {chat.length > 0 && (
           <div className="pb-60">
             {chat.map((conversation, index) => {
@@ -53,7 +37,7 @@ export function Main() {
                   </div>
                   <div>
                     <div className="bg-bright pt-7 pb-6 mt-5">
-                      <div className="container lg:px-48 lg:flex items-start">
+                      <div className="container lg:px-48 lg:flex items-start justify-between">
                         <div className="flex gap-4 max-w-3xl">
                           <div className="min-w-xs">
                             <AvatarChatGPT />
