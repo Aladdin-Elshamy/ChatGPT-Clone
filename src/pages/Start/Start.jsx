@@ -16,7 +16,7 @@ export function Start() {
     }
   }, [navigate]);
   return (
-    <main className="text-white lg:flex justify-center lg:pl-[20%]">
+    <main className="text-white lg:flex lg:pl-[20%]">
       <Navbar setChat={setChat} />
       <Aside setChat={setChat} />
       <div className="w-full relative min-h-[90vh] lg:min-h-[100vh]">
