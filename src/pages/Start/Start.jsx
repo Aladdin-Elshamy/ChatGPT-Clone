@@ -16,7 +16,6 @@ export function Start() {
       navigate("/login");
     }
   }, [navigate]);
-  console.log(chat);
   return (
     <main className="text-white lg:flex lg:pl-[20%]">
       <Navbar setChat={setChat} />

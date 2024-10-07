@@ -5,6 +5,7 @@ import Aside from "@/shared/Aside";
 import { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import ReactMarkdown from "react-markdown";
 export function Main() {
   const [chat, setChat] = useState([
     {
@@ -42,11 +43,15 @@ export function Main() {
                           <div className="min-w-xs">
                             <AvatarChatGPT />
                           </div>
-                          <p>
-                            {conversation.response || (
+                          <div className="markdown-content">
+                            {conversation.response ? (
+                              <ReactMarkdown>
+                                {conversation.response}
+                              </ReactMarkdown>
+                            ) : (
                               <span className="block w-3 animate-bounce h-3 bg-white rounded-full"></span>
                             )}
-                          </p>
+                          </div>
                         </div>
                         <div className="flex gap-4 mt-9 lg:mt-0 ml-12">
                           <Like />
