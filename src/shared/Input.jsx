@@ -106,6 +106,7 @@ export default function Input({ chat, setChat }) {
           value={search}
           type="text"
           id="default-search"
+          autoComplete="off"
           className="text-white shadow-[0px_0px_6px_0px_#0000001A] block w-full rounded border-[#303139] bg-[#40414E] py-3 px-4 placeholder-gray-500 focus:ring-0 focus:border-[#303139] sm:text-sm focus:outline-none"
         />
       </div>

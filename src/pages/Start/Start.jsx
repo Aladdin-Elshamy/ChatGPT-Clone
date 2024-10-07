@@ -7,6 +7,7 @@ import { Fragment, useEffect, useState } from "react";
 import { AvatarChatGPT, AvatarUser, Dislike, Like } from "@/utils/icons.util";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import ReactMarkdown from "react-markdown";
 export function Start() {
   const [chat, setChat] = useState([]);
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export function Start() {
       navigate("/login");
     }
   }, [navigate]);
+  console.log(chat);
   return (
     <main className="text-white lg:flex lg:pl-[20%]">
       <Navbar setChat={setChat} />
@@ -108,11 +110,15 @@ export function Start() {
                           <div className="min-w-xs">
                             <AvatarChatGPT />
                           </div>
-                          <p>
-                            {conversation.response || (
+                          <div className="markdown-content">
+                            {conversation.response ? (
+                              <ReactMarkdown>
+                                {conversation.response}
+                              </ReactMarkdown>
+                            ) : (
                               <span className="block w-3 animate-bounce h-3 bg-white rounded-full"></span>
                             )}
-                          </p>
+                          </div>
                         </div>
                         <div className="flex gap-4 mt-9 lg:mt-0 ml-12">
                           <Like />
