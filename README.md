@@ -2,7 +2,7 @@
 
 A frontend project that replicates the interface and basic functionalities of OpenAI's ChatGPT. This project allows users to interact with a simulated chatbot experience similar to ChatGPT, showcasing how you can implement dynamic conversational UIs using React.
 
-![MixCollage-09-Oct-2024-12-28-AM-5222](https://github.com/user-attachments/assets/7a9a3226-3fcc-4a78-93f0-95216eb8ef26)
+![imgonline-com-ua-twotoone-p5XZHulRqE63](https://github.com/user-attachments/assets/01bbc448-1e7f-4158-8c1e-dc6393741e00)
 
 ## Table of Contents
 
