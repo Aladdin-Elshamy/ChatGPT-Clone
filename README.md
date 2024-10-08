@@ -15,7 +15,7 @@ A frontend project that replicates the interface and basic functionalities of Op
 
 ## Live Demo ⚙️
 
-Check out the live version of the project here: [ChatGPT Clone](https://github.com/Aladdin-Elshamy/ChatGPT-Clone).
+Check out the live version of the project here: [ChatGPT Clone](https://chatgpt-clone-aladdin.vercel.app/).
 
 ## Features ⭐
 
