@@ -1,8 +1,8 @@
 # ChatGPT Clone
 
-A frontend project that replicates the interface and basic functionalities of OpenAI's ChatGPT. This project allows users to interact with a simulated chatbot experience similar to ChatGPT, showcasing how you can implement dynamic conversational UIs using React.
-
 ![imgonline-com-ua-twotoone-p5XZHulRqE63](https://github.com/user-attachments/assets/01bbc448-1e7f-4158-8c1e-dc6393741e00)
+
+A frontend project that replicates the interface and basic functionalities of OpenAI's ChatGPT. This project allows users to interact with a simulated chatbot experience similar to ChatGPT, showcasing how you can implement dynamic conversational UIs using React.
 
 ## Table of Contents
 
