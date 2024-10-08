@@ -17,11 +17,7 @@ export default function Aside({ setChat }) {
   }
   return (
     <aside className="hidden fixed left-0 h-screen z-50 lg:block bg-sideBg w-1/5 text-sm">
-      <div
-        className={`${
-          window.location.pathname === "/start" ? "h-[70%]" : "h-4/6"
-        } w-[95%] mx-auto mt-2 border-b border-bright`}
-      >
+      <div className={`h-4/6 w-[95%] mx-auto mt-2 border-b border-bright`}>
         <button className="border border-bright flex gap-4 p-4 rounded-md items-center w-full">
           <Add classes="w-2 h-2" />
           <p>New chat</p>
@@ -113,9 +109,7 @@ export default function Aside({ setChat }) {
       </div>
       <div>
         <ul className="flex flex-col font-normal gap-2 mt-2 mb-4 rounded-md bg-sideBg dark:border-gray-700">
-          <li
-            className={`${window.location.pathname === "/start" && "hidden"}`}
-          >
+          <li>
             <button
               className="block py-2 px-3 hover:bg-gray-700 w-full"
               onClick={() => setChat([])}
