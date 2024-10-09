@@ -3,19 +3,11 @@ import { Flash, Light, Limitation } from "@/utils/icons.util";
 import Input from "@/shared/Input";
 import Aside from "@/shared/Aside";
 import InfoProvider from "@/components/InfoProvider";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { AvatarChatGPT, AvatarUser, Dislike, Like } from "@/utils/icons.util";
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import ReactMarkdown from "react-markdown";
 export function Start() {
   const [chat, setChat] = useState([]);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!Cookies.get("email") && !Cookies.get("token")) {
-      navigate("/login");
-    }
-  }, [navigate]);
   return (
     <main className="text-white lg:flex lg:pl-[20%]">
       <Navbar setChat={setChat} />
@@ -104,7 +96,7 @@ export function Start() {
                   </div>
                   <div>
                     <div className="bg-bright pt-7 pb-6 mt-5">
-                      <div className="container lg:px-48 lg:flex items-start">
+                      <div className="container lg:px-48 lg:flex items-start justify-between">
                         <div className="flex gap-4 max-w-3xl">
                           <div className="min-w-xs">
                             <AvatarChatGPT />

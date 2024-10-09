@@ -1,18 +1,11 @@
 import { GPTLogo, Google, Microsoft } from "@/utils/icons.util";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Cookies from "js-cookie";
 import SignUpWithGoogle from "@/Oauth";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [microsoftMsg, setMicrosoftMsg] = useState("");
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (Cookies.get("email") || Cookies.get("token")) {
-      navigate("/main");
-    }
-  }, [navigate]);
   function handleSubmit(e) {
     e.preventDefault();
     if (!email) {

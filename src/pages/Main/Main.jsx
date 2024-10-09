@@ -2,9 +2,7 @@ import Navbar from "@/shared/Navbar";
 import { AvatarChatGPT, AvatarUser, Dislike, Like } from "@/utils/icons.util";
 import Input from "@/shared/Input";
 import Aside from "@/shared/Aside";
-import { Fragment, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import { Fragment, useState } from "react";
 import ReactMarkdown from "react-markdown";
 export function Main() {
   const [chat, setChat] = useState([
@@ -14,12 +12,6 @@ export function Main() {
         "A chatbot is a computer program that simulates human conversation through voice commands or text chats or both. Itcan be integrated with various messaging platforms like Facebook Messenger, WhatsApp, WeChat, etc. and can be used for a variety of purposes, such as customer service, entertainment, and e-commerce.",
     },
   ]);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!Cookies.get("email") && !Cookies.get("token")) {
-      navigate("/login");
-    }
-  }, [navigate]);
   return (
     <main className="text-white lg:flex lg:pl-[20%]">
       <Navbar setChat={setChat} />
