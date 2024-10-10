@@ -25,7 +25,7 @@ export function Main() {
                   <div className="container lg:px-48 mt-6">
                     <div className="flex gap-4">
                       <AvatarUser />
-                      <p className="text-[13.6px] md:text-[14.4px] lg:text-base">
+                      <p className="text-[14.4px] md:text-base">
                         {conversation.prompt}
                       </p>
                     </div>
