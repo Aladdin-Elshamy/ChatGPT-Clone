@@ -13,21 +13,33 @@ export default function Input({ chat, setChat }) {
   async function handleSubmit(e) {
     e.preventDefault();
     if (!search) return;
+    const searchValue = search;
     try {
-      const searchValue = search;
       setSearch("");
       setLoading(true);
       setChat([...chat, { prompt: searchValue, response: "" }]);
       const result = await model.generateContent(searchValue);
+      console.log(result);
       if (result && result.response && result.response.text) {
         setChat([
           ...chat,
           { prompt: searchValue, response: result.response.text() },
         ]);
       } else {
+        setChat([
+          ...chat,
+          {
+            prompt: searchValue,
+            response: "Invalid response from model.generateContent",
+          },
+        ]);
         console.error("Invalid response from model.generateContent");
       }
     } catch (error) {
+      setChat([
+        ...chat,
+        { prompt: searchValue, response: "Api Qouta Exceeded" },
+      ]);
       console.error("Error in handleSubmit:", error);
     } finally {
       setLoading(false);
